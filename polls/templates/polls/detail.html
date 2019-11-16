@@ -1,0 +1,4 @@
+<h1>问题是{{question.question_text}}</h1>
+{% for choice in question.choice_set.all %}
+	<li>{{choice.choice_text}}</li>
+{%endfor%}
