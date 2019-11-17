@@ -27,13 +27,16 @@ def results(request,question_id):
 
 def vote(request,question_id):
 	#return HttpResponse("你正在對問題%s投票"%question_id)
-	question=get_object_or_404(Question,question_id)
+	#question=get_object_or_404(Question,question_id) 
+	#爲何在get_object_or_404函數中的question_id參數傳入int實參，會被抛出TypeError錯誤？直接使用以下get函數無錯誤
+	question=Question.objects.get(pk=question_id)
+	
 	try:
 		selected_choice=question.choice_set.get(pk=request.POST['choice'])
 	except (KeyError,choice.DoesNotExist):
 		return render(request,'polls/detali.html',{'question':question,'error_message':"Your didn't select a choice"},)
 	else:
-		selected_choice_choice.vote+=1
+		selected_choice.votes+=1
 		selected_choice.save()
 		return HttpResponseRedirect(reverse('polls:results',args=(question.id,))
 		)
