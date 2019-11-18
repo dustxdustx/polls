@@ -5,6 +5,7 @@ from django.shortcuts import render,get_object_or_404
 from django.urls import reverse
 from django.db.models import F
 from django.views import  generic
+from django.utils import timezone
 
 #from  django.template import loader
 # Create your views here.
@@ -45,7 +46,6 @@ class ResultsView(generic.DetailView):
 def vote(request,question_id):
 	#return HttpResponse("你正在對問題%s投票"%question_id)
 	question=get_object_or_404(Question,pk=question_id) 
-	
 	
 	try:
 		selected_choice=question.choice_set.get(pk=request.POST['choice'])
