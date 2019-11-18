@@ -31,7 +31,8 @@ class IndexView(generic.ListView):
 	template_name='polls/index.html'
 	context_object_name='lastest_question_list'
 	def get_queryset(self):
-		return Question.objects.order_by('-pub_date')[:5]
+		#return Question.objects.order_by('-pub_date')[:5]
+		return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
 class DetailView(generic.DetailView):
 	model=Question
 	template_name='polls/detail.html'
@@ -44,8 +45,7 @@ class ResultsView(generic.DetailView):
 def vote(request,question_id):
 	#return HttpResponse("你正在對問題%s投票"%question_id)
 	question=get_object_or_404(Question,pk=question_id) 
-	#爲何在get_object_or_404函數中的question_id參數傳入int實參，會被抛出TypeError錯誤？直接使用以下get函數無錯誤
-	#question=Question.objects.get(pk=question_id)
+	
 	
 	try:
 		selected_choice=question.choice_set.get(pk=request.POST['choice'])
