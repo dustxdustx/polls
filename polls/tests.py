@@ -6,7 +6,7 @@ import datetime
 
 # Create your tests here.
 def create_question(question_text,days):
-	time=timezone.now()+timedelta(days=days)
+	time=timezone.now()+datetime.timedelta(days=days)
 	return Question.objects.create(question_text=question_text,pub_date=time)
 
 class QuestionIndexViewTests(TestCase):
@@ -14,10 +14,12 @@ class QuestionIndexViewTests(TestCase):
 		response=self.client.get(reverse('polls:index'))
 		self.assertEqual(response.status_code,200)
 		self.assertContains(response,"No polls are avaliable.")
-		self.assertQueryEqual(response.context['latest_question_list'],[])
+		self.assertQuerysetEqual(response.context['lastest_question_list'],[])
+
 	def  test_past_question(self):
-		create_question(question_text="Past quetion.",days=-30)
+		create_question(question_text="Past question.",days=-30)
 		response=self.client.get(reverse('polls:index'))
+		self.assertQuerysetEqual(response.context['lastest_question_list'],['<Question: Past question.>'])
 
 
 class QuestionModelTests(TestCase):
