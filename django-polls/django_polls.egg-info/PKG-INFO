@@ -1,0 +1,44 @@
+Metadata-Version: 1.1
+Name: django-polls
+Version: 0.1
+Summary: A Django app to conduct Web-based polls.
+Home-page: https://www.example.com/
+Author: xyx
+Author-email: yourname@example.com
+License: BSD-3-Clause  # Example license
+Description: ============
+        Polls
+        ============
+        polls 是个简单的示例程序
+        
+        
+        Quick Start
+        ------------
+        1.增加“polls”到你的 INSTALLED_APPS setting 如下：
+         INSTALLLED_APPS=[
+         ...
+         'polls',
+         ]
+         2.把这个polls URLconf 写入你的项目的url.py如下：
+         path('polls/',include('polls.urls'))
+         3.运行 python manage.py migrate 创建数据库
+         4.运行调试服务器并访问 http://127.0.0.1:8000/admin/
+             需要登记相关表
+         5.访问访问 http://127.0.0.1:8000/polls/
+        
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2  # Replace "X.Y" as appropriate
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
